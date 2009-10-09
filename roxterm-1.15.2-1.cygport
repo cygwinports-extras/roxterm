@@ -17,4 +17,6 @@ src_install() {
 
 	exeinto /usr/lib/rox/ROXTerm
 	doexe AppRun
+
+	cp -r Help ${D}/usr/lib/rox/ROXTerm/
 }
