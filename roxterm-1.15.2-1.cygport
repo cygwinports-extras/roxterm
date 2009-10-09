@@ -1,8 +1,20 @@
 DESCRIPTION="ROX terminal emulator"
 HOMEPAGE="http://roxterm.sourceforge.net/"
 SRC_URI="mirror://sourceforge/roxterm/${P}.tar.gz"
-PATCH_URI="1.15.2-configure-vte.patch"
+PATCH_URI="1.15.2-configure.patch"
 
 DIFF_EXCLUDES="AppInfo.xml"
 
 #CYGCONF_ARGS="--with-docbook-man-xsl=/usr/share/xml/docbook/xsl/manpages/docbook.xsl"
+
+src_install() {
+	cd ${B}
+	cyginstall
+
+	cd ${S}
+	insinto /usr/lib/rox/ROXTerm
+	doins .DirIcon AppInfo.xml
+
+	exeinto /usr/lib/rox/ROXTerm
+	doexe AppRun
+}
