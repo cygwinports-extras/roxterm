@@ -1,0 +1,11 @@
+--- origsrc/roxterm-1.19.4/po4a/Makefile.am	2010-10-14 07:18:53.000000000 -0500
++++ src/roxterm-1.19.4/po4a/Makefile.am	2010-11-04 01:40:27.617399400 -0500
+@@ -57,7 +57,7 @@ HTMLFILES_ES = ../Help/es/guide.html \
+ 		../Help/es/news.html
+ install-data-local: install-mans
+ 	$(install_sh) -m 0755 -d $(DESTDIR)/$(htmldir)/es
+-	$(install_sh) -m 0644 -t $(DESTDIR)/$(htmldir)/es $(HTMLFILES_ES)
++	$(install_sh) -m 0644 -t $(DESTDIR)/$(htmldir)/es $(addprefix $(srcdir)/,$(HTMLFILES_ES))
+ 
+ guide.html.pot: ../Help/en/guide.html
+ 	po4a-gettextize -f xhtml -m $< -p $@
