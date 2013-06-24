@@ -1,0 +1,44 @@
+inherit python
+
+NAME="roxterm"
+VERSION=2.7.2
+RELEASE=1
+CATEGORY="Shells X11"
+SUMMARY="ROX terminal emulator"
+DESCRIPTION="ROXTerm is a terminal emulator intended to provide similar
+features to gnome-terminal, based on the same VTE library, but with a
+smaller footprint and quicker start-up time. It achieves this by not
+using the Gnome libraries and by using a separate applet to provide the
+configuration GUI. It can be used as a ROX application, as the name
+implies, or in any other X environment."
+HOMEPAGE="http://roxterm.sourceforge.net/"
+SRC_URI="mirror://sourceforge/roxterm/roxterm-${VERSION}.tar.bz2"
+
+# FIXME: lndirs doesn't seem to help
+DIFF_EXCLUDES="AppInfo.xml build Help po *.1.xml"
+
+src_compile() {
+	lndirs
+	cd ${B}
+	${PYTHON} mscript.py configure \
+		--prefix=/usr \
+		--disable-git \
+		--disable-gtk3 \
+		--no-lock \
+		|| error "configure failed"
+	${PYTHON} mscript.py build --no-lock || error "build failed"
+}
+
+src_install() {
+	cd ${B}
+	${PYTHON} mscript.py install --destdir=${D} --no-lock || error "install failed"
+
+	cd ${S}
+	insinto /usr/lib/rox/ROXTerm
+	doins .DirIcon AppInfo.xml
+
+	exeinto /usr/lib/rox/ROXTerm
+	doexe AppRun
+
+	cp -Lr Help/ ${D}/usr/lib/rox/ROXTerm/
+}

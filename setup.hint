@@ -1,9 +1,0 @@
-category: Shells X11
-requires: libdbus-glib_1_2 libdbus1_3 libgdk_pixbuf2.0_0 libglade2.0_0 libglib2.0_0 libgtk2.0_0 libICE6 libintl8 libpango1.0_0 libSM6 libvte9
-sdesc: "ROX terminal emulator"
-ldesc: "ROXTerm is a terminal emulator intended to provide similar 
-features to gnome-terminal, based on the same VTE library, but with a 
-smaller footprint and quicker start-up time. It achieves this by not 
-using the Gnome libraries and by using a separate applet to provide the 
-configuration GUI. It can be used as a ROX application, as the name 
-implies, or in any other X environment."
